@@ -35,7 +35,8 @@
     "DIB": {
         "window_size": 16,
         "sets": 32,
-        "ways": 8
+        "ways": 8,
+        "replacement": "fifo"
     },
 
     "L1I": {
@@ -51,7 +52,8 @@
         "prefetch_as_load": false,
         "virtual_prefetch": true,
         "prefetch_activate": "LOAD,PREFETCH",
-        "prefetcher": "no_instr"
+        "prefetcher": "no_instr",
+        "replacement": "fifo"
     },
 
     "L1D": {
@@ -67,7 +69,8 @@
         "prefetch_as_load": false,
         "virtual_prefetch": false,
         "prefetch_activate": "LOAD,PREFETCH",
-        "prefetcher": "no"
+        "prefetcher": "no",
+        "replacement": "fifo"
     },
 
     "L2C": {
@@ -83,7 +86,8 @@
         "prefetch_as_load": false,
         "virtual_prefetch": false,
         "prefetch_activate": "LOAD,PREFETCH",
-        "prefetcher": "no"
+        "prefetcher": "no",
+        "replacement": "fifo"
     },
 
     "ITLB": {
@@ -96,7 +100,8 @@
         "latency": 1,
         "max_tag_check": 2,
         "max_fill": 2,
-        "prefetch_as_load": false
+        "prefetch_as_load": false,
+        "replacement": "fifo"
     },
 
     "DTLB": {
@@ -109,7 +114,8 @@
         "latency": 1,
         "max_tag_check": 2,
         "max_fill": 2,
-        "prefetch_as_load": false
+        "prefetch_as_load": false,
+        "replacement": "fifo"
     },
 
     "STLB": {
@@ -122,7 +128,8 @@
         "latency": 8,
         "max_tag_check": 1,
         "max_fill": 1,
-        "prefetch_as_load": false
+        "prefetch_as_load": false,
+        "replacement": "fifo"
     },
 
 	"PTW": {
@@ -137,7 +144,8 @@
 		"rq_size": 16,
 		"mshr_size": 5,
 		"max_read": 2,
-		"max_write": 2
+		"max_write": 2,
+        "replacement": "fifo"
 	},
 
     "LLC": {

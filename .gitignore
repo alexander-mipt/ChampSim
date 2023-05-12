@@ -8,6 +8,8 @@ bin/
 
 **/*.o
 **/*.d
+traces/**
+stat/**
 
 test/000-test-main
 
