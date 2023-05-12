@@ -19,7 +19,7 @@ for experiment in ${experiments[*]}; do
     mkdir -p $stat_dir/$experiment
     for trace in `ls $traces_dir`; do
         set -x
-        time $bin_dir/$experiment/champsim --warmup_instructions $warmup --simulation_instructions $simulation $trace_dir/$trace &> $stat_dir/$experiment/$trace.log
+        time $bin_dir/$experiment/champsim --warmup_instructions $warmup --simulation_instructions $simulation $traces_dir/$trace &> $stat_dir/$experiment/$trace.log
         set +x
     done
 done
