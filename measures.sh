@@ -1,28 +1,19 @@
 #!/bin/bash
 
-warmup=200
-simulation=500
-
-traces_dir=traces/for_measure
-stat_dir=stat
-bin_dir=bin
-
-etalon="etalon"
-markov_max="markov_predictor_max"
-markov_prop="markov_predictor_prop"
-fifo="fifo_cache"
-
-experiments=($etalon $markov_max $markov_prop $fifo)
+source environment.sh
 
 mkdir -p $stat_dir
-for experiment in ${experiments[*]}; do
-    mkdir -p $stat_dir/$experiment
-    for trace in `ls $traces_dir`; do
-        set -x
-        time $bin_dir/$experiment/champsim --warmup_instructions $warmup --simulation_instructions $simulation $traces_dir/$trace &> $stat_dir/$experiment/$trace.log
-        set +x
-    done
-done
+
+# single thread
+# for arg in ${experiments[*]}; do
+#     ./measure.sh $arg
+# done
+
+# multi-thread
+# ./measure.sh $etalon
+./measure.sh $markov_max &
+./measure.sh $markov_prop &
+./measure.sh $fifo &
 
 exit 0
 

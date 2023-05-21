@@ -2,16 +2,6 @@ import re
 import sys
 import os, glob
 
-# PredictionRegex = r'(?P<name>Branch Prediction Accuracy): (?P<value>[0-9\.]+)%'
-# IPCMetricRegex = r'(?P<name>cumulative IPC): (?P<value>[0-9\.]+)'
-# InstructionsRegex = r'(?P<name>instructions):(?P<value>[0-9]+)'
-# CyclesRegex = r'(?P<name>cycles):(?P<value>[0-9]+)'
-# MKPIRegex = r'(?P<name>MPKI):(?P<value>[0-9]+)'
-# ROBMissRegex = r'(?P<name>Average ROB Occupancy at Mispredict):(?P<value>[0-9]+)'
-# traceRegex = r'CPU [0-9] runs (?P<trace>.*\.champsimtrace\.xz)'
-
-rrr = re.compile(r'CPU')
-
 metrics = [
     r'CPU [0-9] runs (?P<name>.*\.champsimtrace\.xz)',
     r'(?P<cpu>CPU [0-9]) (?P<prediction>Branch Prediction Accuracy): (?P<prediction_value>([0-9\.]+)|([-]?nan))% (?P<mpki>MPKI): (?P<mpki_value>([0-9\.]+)|([-]?nan)) (?P<rob>Average ROB Occupancy at Mispredict): (?P<rob_value>([0-9\.]+)|([-]?nan))',
@@ -99,9 +89,11 @@ def process_entry(idx, regx):
     return None
 
 def addInTable(entries : list, table : dict):
+    # print(table)
     for key, value in entries:
         if key not in table.keys():
             table[key] = []
+            table[key].append(value)
         else:
             table[key].append(value)
 
@@ -136,16 +128,19 @@ def process_and_accumulate(inputDir : str, suffix : str):
                     # print(resultAll)
                     # print(process_entry(i, result))
                     entries = process_entry(i, result)
+                    # print(entries)
                     addInTable(entries, table)
                 else:
                     userError('unlnown regex pattern')
     checkTable(table)
     # for key, array in table.items():
     #     print(f'{key}:\n{array}')
+    # print(table)
     return table
 
 
 def genCSV(table : dict(), file: str):
+    # print(table)
     with open(file, '+w') as f:
         for key in table.keys():
             f.write(f'{key}, ')
@@ -170,6 +165,7 @@ if __name__ == '__main__':
     models = ['etalon', 'fifo_cache', 'markov_predictor_max', 'markov_predictor_prop']
     for model in models:
         table = process_and_accumulate(f'{dir}/{model}', '*.log')
+        # print(table)
         genCSV(table, f'{dir}/{model}/table.csv')
 
 

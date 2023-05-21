@@ -36,7 +36,7 @@ private:
 
 void O3_CPU::initialize_branch_predictor()
 {
-  std::cout << "CPU " << cpu << " Markov branch predictor" << std::endl;
+  std::cout << "CPU " << cpu << " Markov branch predictor\t";
 #ifdef MARKOV_PREDICTOR_PROP_ENABLE
   std::cout << "Propability mode enabled" << std::endl;
 #else
