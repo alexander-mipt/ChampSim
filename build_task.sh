@@ -8,6 +8,8 @@ make
 make CXXFLAGS='-DMARKOV_PREDICTOR_PROP_ENABLE'
 ./config.sh --bindir ./bin/fifo_cache/ ./configs/fifo.json
 make
+./config.sh --bindir ./bin/mru_cache/ ./configs/mru.json
+make
 
 echo -e "\n\n================\nBuild successfully:"
 find ./bin/ -name champsim

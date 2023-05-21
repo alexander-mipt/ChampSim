@@ -2,8 +2,8 @@
 
 source environment.sh
 
-# warmup=200
-# simulation=500
+#warmup=20000
+#simulation=50000
 warmup=10000000
 simulation=50000000
 

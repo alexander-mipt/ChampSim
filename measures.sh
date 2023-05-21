@@ -10,7 +10,7 @@ mkdir -p $stat_dir
 # done
 
 # multi-thread
-# ./measure.sh $etalon
+./measure.sh $etalon &
 ./measure.sh $markov_max &
 ./measure.sh $markov_prop &
 ./measure.sh $fifo &
