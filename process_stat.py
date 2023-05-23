@@ -162,7 +162,7 @@ def genCSV(table : dict(), file: str):
 if __name__ == '__main__':
     dir = 'stat'
     outdir = 'stat/results'
-    models = ['etalon', 'fifo_cache', 'mru_cache', 'markov_predictor_max', 'markov_predictor_prop']
+    models = ['etalon', 'drrip_cache', 'mru_cache', 'markov_predictor_max', 'markov_predictor_prop']
     for model in models:
         table = process_and_accumulate(f'{dir}/{model}', '*.log')
         # print(table)

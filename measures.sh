@@ -13,7 +13,10 @@ mkdir -p $stat_dir
 ./measure.sh $etalon &
 ./measure.sh $markov_max &
 ./measure.sh $markov_prop &
-./measure.sh $fifo &
+./measure.sh $mru &
+./measure.sh $drrip &
+# ./measure.sh $fifo &
+
 
 exit 0
 
